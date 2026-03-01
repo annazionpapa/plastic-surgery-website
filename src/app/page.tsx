@@ -6,10 +6,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileBottomCTA from "@/components/MobileBottomCTA";
 import ScrollReveal from "@/components/ScrollReveal";
+import CountUp from "@/components/CountUp";
 import { treatments } from "@/data/treatments";
 import { doctors } from "@/data/doctors";
 import { reviews } from "@/data/reviews";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
   return (
@@ -31,117 +32,221 @@ export default function Home() {
 }
 
 /* ══════════════════════════════════════════
-   1. HERO — Split Screen (기존과 완전히 다른 구조)
+   1. HERO — 풀스크린 이머시브 + 슬라이드
    ══════════════════════════════════════════ */
+const heroSlides = [
+  {
+    image: "/images/facility-lobby.jpg",
+    subtitle: "Plastic Surgery",
+    title: (
+      <>
+        자연스러운
+        <br />
+        아름다움의
+        <br />
+        <span className="font-display italic text-rosegold">완성</span>
+      </>
+    ),
+    desc: "15년 경력 성형외과 전문의 3인이 당신의 고유한 아름다움을\n가장 자연스러운 방법으로 완성합니다.",
+  },
+  {
+    image: "/images/treatment-nose.jpg",
+    subtitle: "Natural Beauty",
+    title: (
+      <>
+        당신만의
+        <br />
+        <span className="font-display italic text-rosegold">아름다움</span>을
+        <br />
+        디자인하다
+      </>
+    ),
+    desc: "얼굴 구조와 비율을 정밀하게 분석하여\n조화로운 결과를 만들어냅니다.",
+  },
+  {
+    image: "/images/treatment-eyes.jpg",
+    subtitle: "Expert Care",
+    title: (
+      <>
+        전문의의
+        <br />
+        <span className="font-display italic text-rosegold">섬세한</span>
+        <br />
+        터치
+      </>
+    ),
+    desc: "대학병원 출신 전문의 3인이\n최소 절개, 빠른 회복을 약속합니다.",
+  },
+];
+
 function HeroSection() {
+  const [current, setCurrent] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const SLIDE_DURATION = 5000;
+
+  useEffect(() => {
+    const startTime = Date.now();
+    const progressInterval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const slideElapsed = elapsed % SLIDE_DURATION;
+      setProgress((slideElapsed / SLIDE_DURATION) * 100);
+    }, 30);
+
+    intervalRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % heroSlides.length);
+    }, SLIDE_DURATION);
+
+    return () => {
+      clearInterval(progressInterval);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
+
+  // Reset progress on slide change
+  useEffect(() => {
+    setProgress(0);
+  }, [current]);
+
+  const slide = heroSlides[current];
+
   return (
-    <section className="relative min-h-screen flex">
-      {/* Left: Image */}
-      <div className="hidden lg:block lg:w-[55%] relative overflow-hidden">
-        <Image
-          src="/images/facility-lobby.jpg"
-          alt="뤼에르 성형외과"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-obsidian/20 via-transparent to-obsidian" />
-      </div>
+    <section className="relative h-screen min-h-[700px] max-h-[1100px] overflow-hidden">
+      {/* Background Images */}
+      {heroSlides.map((s, i) => (
+        <div
+          key={i}
+          className={`absolute inset-0 transition-all duration-[1.5s] ease-in-out ${
+            i === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
+          }`}
+        >
+          <Image
+            src={s.image}
+            alt=""
+            fill
+            className="object-cover"
+            priority={i === 0}
+          />
+        </div>
+      ))}
 
-      {/* Mobile: Background Image */}
-      <div className="lg:hidden absolute inset-0">
-        <Image
-          src="/images/facility-lobby.jpg"
-          alt="뤼에르 성형외과"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-obsidian/70" />
-      </div>
+      {/* Overlay Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-obsidian/85 via-obsidian/50 to-obsidian/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/20" />
 
-      {/* Right: Content */}
-      <div className="relative w-full lg:w-[45%] flex items-center justify-center px-8 lg:px-16 py-32">
-        <div className="max-w-lg">
+      {/* Content */}
+      <div className="relative h-full max-w-7xl mx-auto px-5 lg:px-8 flex items-center">
+        <div className="max-w-2xl">
           {/* Tag */}
-          <div className="anim-fade-up flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-8">
             <span className="anim-line h-px bg-rosegold" />
             <span className="text-[11px] tracking-[0.3em] uppercase text-rosegold">
-              Plastic Surgery
+              {slide.subtitle}
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="anim-fade-up anim-fade-up-d1 text-4xl sm:text-5xl lg:text-[3.5rem] font-light leading-[1.15] tracking-tight mb-6">
-            자연스러운
-            <br />
-            아름다움의
-            <br />
-            <span className="font-display italic text-rosegold">완성</span>
+          <h1
+            key={`title-${current}`}
+            className="text-4xl sm:text-5xl lg:text-7xl font-light leading-[1.1] tracking-tight mb-8 anim-fade-up"
+          >
+            {slide.title}
           </h1>
 
           {/* Subtitle */}
-          <p className="anim-fade-up anim-fade-up-d2 text-silver leading-relaxed mb-10 text-[15px]">
-            15년 경력 성형외과 전문의 3인이 당신의 고유한 아름다움을
-            <br className="hidden sm:block" />
-            가장 자연스러운 방법으로 완성합니다.
+          <p
+            key={`desc-${current}`}
+            className="anim-fade-up anim-fade-up-d1 text-silver leading-relaxed mb-12 text-[15px] lg:text-base whitespace-pre-line max-w-md"
+          >
+            {slide.desc}
           </p>
 
           {/* CTAs */}
-          <div className="anim-fade-up anim-fade-up-d3 flex flex-col sm:flex-row gap-4">
+          <div className="anim-fade-up anim-fade-up-d2 flex flex-col sm:flex-row gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-rosegold text-obsidian text-sm tracking-[0.1em] font-medium hover:bg-rosegold-light transition-colors"
+              className="inline-flex items-center justify-center px-10 py-4 bg-rosegold text-obsidian text-sm tracking-[0.12em] font-medium hover:bg-rosegold-light transition-colors"
             >
               무료 상담 예약
             </Link>
             <Link
               href="/treatments"
-              className="inline-flex items-center justify-center px-8 py-4 border border-white/15 text-ivory text-sm tracking-[0.1em] hover:border-rosegold/40 hover:text-rosegold transition-all"
+              className="inline-flex items-center justify-center px-10 py-4 border border-white/20 text-ivory text-sm tracking-[0.12em] hover:border-rosegold/50 hover:text-rosegold transition-all"
             >
               시술 안내 보기
             </Link>
           </div>
-
-          {/* Scroll indicator */}
-          <div className="anim-fade anim-fade-d2 absolute bottom-10 left-1/2 lg:left-16 -translate-x-1/2 lg:translate-x-0 flex flex-col items-center gap-2">
-            <span className="text-[10px] tracking-[0.3em] text-silver-dark uppercase">
-              Scroll
-            </span>
-            <div className="w-px h-10 bg-gradient-to-b from-rosegold/60 to-transparent animate-pulse" />
-          </div>
         </div>
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-12 left-5 lg:left-8 flex items-center gap-6">
+        <div className="flex items-center gap-3">
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className="relative h-[2px] overflow-hidden transition-all duration-300"
+              style={{ width: i === current ? 48 : 24 }}
+              aria-label={`슬라이드 ${i + 1}`}
+            >
+              <span className="absolute inset-0 bg-white/20" />
+              {i === current && (
+                <span
+                  className="absolute inset-y-0 left-0 bg-rosegold transition-none"
+                  style={{ width: `${progress}%` }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
+        <span className="text-[11px] tracking-[0.2em] text-silver-dark font-light">
+          {String(current + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-12 right-5 lg:right-8 flex flex-col items-center gap-2">
+        <span className="text-[10px] tracking-[0.3em] text-silver-dark uppercase">
+          Scroll
+        </span>
+        <div className="w-px h-10 bg-gradient-to-b from-rosegold/60 to-transparent animate-pulse" />
       </div>
     </section>
   );
 }
 
 /* ══════════════════════════════════════════
-   2. STATS BAR — 인라인 가로 (기존 grid와 다름)
+   2. STATS BAR — 카운트업 애니메이션
    ══════════════════════════════════════════ */
 function StatsBar() {
   return (
-    <section className="border-y border-white/5">
+    <section className="border-y border-white/5 bg-obsidian">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4">
           {[
-            { number: "15+", label: "Years", sublabel: "전문의 경력" },
-            { number: "30,000+", label: "Cases", sublabel: "누적 시술" },
-            { number: "99.2%", label: "Satisfaction", sublabel: "환자 만족도" },
-            { number: "3", label: "Specialists", sublabel: "전문의 팀" },
+            { end: 15, suffix: "+", label: "Years", sublabel: "전문의 경력" },
+            { end: 30000, suffix: "+", label: "Cases", sublabel: "누적 시술" },
+            { end: 99.2, suffix: "%", label: "Satisfaction", sublabel: "환자 만족도", decimals: 1 },
+            { end: 3, suffix: "", label: "Specialists", sublabel: "전문의 팀" },
           ].map((stat, i) => (
             <ScrollReveal key={stat.label} delay={Math.min(i + 1, 4)}>
               <div
-                className={`py-10 lg:py-14 text-center ${
+                className={`py-12 lg:py-16 text-center ${
                   i < 3 ? "lg:border-r border-white/5" : ""
                 } ${i < 2 ? "border-b lg:border-b-0 border-white/5" : ""} ${
                   i % 2 === 0 ? "border-r border-white/5 lg:border-r" : ""
                 }`}
               >
-                <p className="text-2xl lg:text-3xl font-light text-ivory tracking-tight">
-                  {stat.number}
+                <p className="text-3xl lg:text-4xl font-light text-ivory tracking-tight">
+                  <CountUp
+                    end={stat.end}
+                    suffix={stat.suffix}
+                    decimals={stat.decimals || 0}
+                    duration={2200}
+                  />
                 </p>
-                <p className="text-[10px] tracking-[0.25em] uppercase text-rosegold mt-2">
+                <p className="text-[10px] tracking-[0.25em] uppercase text-rosegold mt-3">
                   {stat.label}
                 </p>
                 <p className="text-xs text-silver-dark mt-1">{stat.sublabel}</p>
@@ -155,11 +260,11 @@ function StatsBar() {
 }
 
 /* ══════════════════════════════════════════
-   3. SIGNATURE TREATMENTS — 비대칭 레이아웃 (3열 그리드 탈피)
+   3. SIGNATURE TREATMENTS — 벤토 그리드
    ══════════════════════════════════════════ */
 function SignatureTreatments() {
   return (
-    <section className="py-24 lg:py-32">
+    <section className="py-28 lg:py-40 bg-obsidian-lighter/50">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         {/* Section Header */}
         <ScrollReveal>
@@ -181,7 +286,7 @@ function SignatureTreatments() {
           </div>
         </ScrollReveal>
 
-        {/* Treatment Grid — 비대칭 벤토 배치 */}
+        {/* Treatment Grid — 벤토 배치 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {/* Row 1: Large + Medium */}
           <ScrollReveal direction="left" className="md:col-span-1 lg:col-span-2 lg:row-span-2">
@@ -204,7 +309,7 @@ function SignatureTreatments() {
 
         {/* View All */}
         <ScrollReveal>
-          <div className="text-center mt-12">
+          <div className="text-center mt-14">
             <Link
               href="/treatments"
               className="inline-flex items-center gap-2 text-sm text-rosegold hover:text-rosegold-light transition-colors group"
@@ -269,7 +374,7 @@ function TreatmentCard({
 }
 
 /* ══════════════════════════════════════════
-   4. BEFORE/AFTER GALLERY — 가로 스크롤 (기존에 없던 패턴)
+   4. BEFORE/AFTER GALLERY — 가로 스크롤
    ══════════════════════════════════════════ */
 function BeforeAfterGallery() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -293,10 +398,10 @@ function BeforeAfterGallery() {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-obsidian-light">
+    <section className="py-28 lg:py-40 bg-obsidian">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <ScrollReveal>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-14">
             <div>
               <p className="text-[11px] tracking-[0.3em] uppercase text-rosegold mb-4">
                 Before &amp; After
@@ -375,7 +480,7 @@ function BeforeAfterGallery() {
         <div className="flex-shrink-0 w-5 lg:w-[calc((100vw-1280px)/2)]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-5 lg:px-8 mt-10">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8 mt-12">
         <Link
           href="/gallery"
           className="inline-flex items-center gap-2 text-sm text-rosegold hover:text-rosegold-light transition-colors group"
@@ -391,14 +496,14 @@ function BeforeAfterGallery() {
 }
 
 /* ══════════════════════════════════════════
-   5. DOCTORS — 시네마틱 프로필 (카드 그리드와 다름)
+   5. DOCTORS — 시네마틱 프로필
    ══════════════════════════════════════════ */
 function DoctorsSection() {
   const [activeDoctor, setActiveDoctor] = useState(0);
   const doc = doctors[activeDoctor];
 
   return (
-    <section className="py-24 lg:py-32">
+    <section className="py-28 lg:py-40 bg-charcoal/40">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <ScrollReveal>
           <div className="mb-16 lg:mb-20">
@@ -512,7 +617,7 @@ function DoctorsSection() {
 
         {/* Quote Bridge + Activity Photos */}
         <ScrollReveal>
-          <div className="flex items-center gap-5 py-5 mt-8 mb-2 border-t border-b border-white/5">
+          <div className="flex items-center gap-5 py-5 mt-10 mb-2 border-t border-b border-white/5">
             <svg
               className="w-7 h-7 text-rosegold/25 flex-shrink-0"
               fill="currentColor"
@@ -552,13 +657,13 @@ function DoctorsSection() {
 }
 
 /* ══════════════════════════════════════════
-   6. REVIEWS — 에디토리얼 스타일 (카드 그리드와 다름)
+   6. REVIEWS — 에디토리얼 스타일
    ══════════════════════════════════════════ */
 function ReviewsSection() {
   const featuredReviews = reviews.slice(0, 6);
 
   return (
-    <section className="py-24 lg:py-32 bg-obsidian-light">
+    <section className="py-28 lg:py-40 bg-obsidian">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <ScrollReveal>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
@@ -625,7 +730,7 @@ function ReviewsSection() {
         </div>
 
         <ScrollReveal>
-          <div className="text-center mt-12">
+          <div className="text-center mt-14">
             <Link
               href="/reviews"
               className="inline-flex items-center gap-2 text-sm text-rosegold hover:text-rosegold-light transition-colors group"
@@ -647,7 +752,7 @@ function ReviewsSection() {
    ══════════════════════════════════════════ */
 function CTASection() {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden">
+    <section className="relative py-32 lg:py-44 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-obsidian-lighter to-obsidian" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-rosegold/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-72 h-72 bg-rosegold/3 rounded-full blur-3xl" />
@@ -664,7 +769,7 @@ function CTASection() {
               지금 시작하세요
             </span>
           </h2>
-          <p className="text-silver leading-relaxed mb-10 max-w-lg mx-auto">
+          <p className="text-silver leading-relaxed mb-12 max-w-lg mx-auto">
             전문의 1:1 맞춤 상담으로 자연스럽고 만족스러운 결과를 약속합니다.
             <br className="hidden sm:block" />
             부담 없이 문의해 주세요.
