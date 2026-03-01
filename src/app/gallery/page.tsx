@@ -33,7 +33,7 @@ interface GalleryCase {
 }
 
 const galleryCases: GalleryCase[] = [
-  // 눈 4
+  // 눈 3
   {
     id: 1,
     title: "자연유착 쌍꺼풀",
@@ -64,17 +64,7 @@ const galleryCases: GalleryCase[] = [
     before: "/images/case-eyes-03-before.jpg",
     after: "/images/case-eyes-03-after.jpg",
   },
-  {
-    id: 14,
-    title: "상안검 성형 (눈처짐)",
-    category: "눈 성형",
-    info: "50대 여성",
-    doctor: "박서연 원장",
-    period: "2개월 경과",
-    before: "/images/case-eyes-03-before.jpg",
-    after: "/images/case-eyes-03-after.jpg",
-  },
-  // 코 4
+  // 코 3
   {
     id: 4,
     title: "콧대 + 코끝 복합",
@@ -105,17 +95,7 @@ const galleryCases: GalleryCase[] = [
     before: "/images/case-nose-03-before.jpg",
     after: "/images/case-nose-03-after.jpg",
   },
-  {
-    id: 15,
-    title: "들창코 교정",
-    category: "코 성형",
-    info: "20대 여성",
-    doctor: "김도윤 원장",
-    period: "5개월 경과",
-    before: "/images/case-nose-01-before.jpg",
-    after: "/images/case-nose-01-after.jpg",
-  },
-  // 윤곽 3
+  // 윤곽 2
   {
     id: 7,
     title: "사각턱 축소술",
@@ -135,16 +115,6 @@ const galleryCases: GalleryCase[] = [
     period: "2개월 경과",
     before: "/images/case-contour-02-before.jpg",
     after: "/images/case-contour-02-after.jpg",
-  },
-  {
-    id: 16,
-    title: "턱끝 성형 (무턱)",
-    category: "윤곽 성형",
-    info: "20대 여성",
-    doctor: "김도윤 원장",
-    period: "4개월 경과",
-    before: "/images/case-contour-01-before.jpg",
-    after: "/images/case-contour-01-after.jpg",
   },
   // 리프팅 2
   {
@@ -167,7 +137,7 @@ const galleryCases: GalleryCase[] = [
     before: "/images/case-lifting-02-before.jpg",
     after: "/images/case-lifting-02-after.jpg",
   },
-  // 가슴 2
+  // 가슴 1
   {
     id: 11,
     title: "가슴 확대 (물방울)",
@@ -178,17 +148,7 @@ const galleryCases: GalleryCase[] = [
     before: "/images/case-breast-01-before.jpg",
     after: "/images/case-breast-01-after.jpg",
   },
-  {
-    id: 17,
-    title: "가슴 축소·거상",
-    category: "가슴 성형",
-    info: "40대 여성",
-    doctor: "이준혁 원장",
-    period: "4개월 경과",
-    before: "/images/case-breast-01-before.jpg",
-    after: "/images/case-breast-01-after.jpg",
-  },
-  // 바디 2
+  // 바디 1
   {
     id: 12,
     title: "복부 지방흡입",
@@ -196,16 +156,6 @@ const galleryCases: GalleryCase[] = [
     info: "30대 여성",
     doctor: "이준혁 원장",
     period: "2개월 경과",
-    before: "/images/case-body-01-before.jpg",
-    after: "/images/case-body-01-after.jpg",
-  },
-  {
-    id: 18,
-    title: "허벅지 지방흡입",
-    category: "바디 성형",
-    info: "20대 여성",
-    doctor: "이준혁 원장",
-    period: "3개월 경과",
     before: "/images/case-body-01-before.jpg",
     after: "/images/case-body-01-after.jpg",
   },
