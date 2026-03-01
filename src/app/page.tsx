@@ -36,46 +36,46 @@ export default function Home() {
    ══════════════════════════════════════════ */
 const heroSlides = [
   {
-    image: "/images/facility-lobby.jpg",
-    subtitle: "Plastic Surgery",
+    image: "/images/treatment-nose.jpg",
+    subtitle: "Rhinoplasty",
     title: (
       <>
-        자연스러운
+        조화로운
         <br />
-        아름다움의
+        라인의
         <br />
         <span className="font-display italic text-rosegold">완성</span>
       </>
     ),
-    desc: "15년 경력 성형외과 전문의 3인이 당신의 고유한 아름다움을\n가장 자연스러운 방법으로 완성합니다.",
+    desc: "얼굴 전체의 균형을 고려한 정밀 코 성형.\n자연스럽고 세련된 라인을 디자인합니다.",
   },
   {
-    image: "/images/treatment-nose.jpg",
-    subtitle: "Natural Beauty",
+    image: "/images/treatment-contour.jpg",
+    subtitle: "Facial Contour",
     title: (
       <>
-        당신만의
+        얼굴형의
         <br />
-        <span className="font-display italic text-rosegold">아름다움</span>을
+        <span className="font-display italic text-rosegold">완벽한</span>
         <br />
-        디자인하다
+        재설계
       </>
     ),
-    desc: "얼굴 구조와 비율을 정밀하게 분석하여\n조화로운 결과를 만들어냅니다.",
+    desc: "3D CT 정밀 분석 기반 윤곽 성형.\n갸름하고 부드러운 페이스라인을 완성합니다.",
   },
   {
-    image: "/images/treatment-eyes.jpg",
-    subtitle: "Expert Care",
+    image: "/images/treatment-lifting.jpg",
+    subtitle: "Anti-Aging Lifting",
     title: (
       <>
-        전문의의
+        시간을
         <br />
-        <span className="font-display italic text-rosegold">섬세한</span>
+        <span className="font-display italic text-rosegold">되돌리는</span>
         <br />
-        터치
+        기술
       </>
     ),
-    desc: "대학병원 출신 전문의 3인이\n최소 절개, 빠른 회복을 약속합니다.",
+    desc: "근본적인 피부 탄력 회복.\n자연스러운 동안 효과를 경험하세요.",
   },
 ];
 
