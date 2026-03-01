@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-obsidian: #0A0A0A;
+  --color-obsidian-light: #141414;
+  --color-obsidian-lighter: #1A1A1A;
+  --color-charcoal: #222222;
+  --color-charcoal-light: #2A2A2A;
+
+  --color-rosegold: #C4956A;
+  --color-rosegold-light: #D4A87E;
+  --color-rosegold-dark: #B07D52;
+  --color-rosegold-muted: #C4956A33;
+
+  --color-ivory: #F5F0EB;
+  --color-ivory-muted: #F5F0EB99;
+  --color-silver: #999999;
+  --color-silver-light: #BBBBBB;
+  --color-silver-dark: #666666;
+
+  --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-display: 'Playfair Display', 'Georgia', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-obsidian);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-rosegold);
+  color: var(--color-obsidian);
+}
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.5s; }
+.reveal-d6 { transition-delay: 0.6s; }
+
+/* ── Slide In Horizontal ── */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal-left.visible,
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Hero Split Animation ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes lineExpand {
+  from { width: 0; }
+  to { width: 48px; }
+}
+.anim-fade-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+.anim-fade-up-d1 { animation-delay: 0.2s; }
+.anim-fade-up-d2 { animation-delay: 0.4s; }
+.anim-fade-up-d3 { animation-delay: 0.6s; }
+.anim-fade-up-d4 { animation-delay: 0.8s; }
+.anim-fade {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+.anim-fade-d1 { animation-delay: 0.3s; }
+.anim-fade-d2 { animation-delay: 0.6s; }
+.anim-line {
+  width: 0;
+  animation: lineExpand 0.6s ease-out 0.5s forwards;
+}
+
+/* ── Horizontal Scroll Gallery ── */
+.gallery-scroll {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+.gallery-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ── Before/After Slider ── */
+.ba-slider {
+  position: relative;
+  overflow: hidden;
+  cursor: col-resize;
+}
+.ba-slider .ba-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+.ba-slider .ba-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background: var(--color-rosegold);
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.ba-slider .ba-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-rosegold);
+  box-shadow: 0 0 20px rgba(196, 149, 106, 0.4);
+}
+
+/* ── Divider Line ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-rosegold-muted), transparent);
+}
+
+/* ── Text Gradient ── */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-rosegold-light), var(--color-rosegold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass Card ── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Mobile Bottom CTA Space ── */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 72px;
+  }
+}
+
+/* ── Accessibility: Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .anim-fade-up, .anim-fade, .anim-line {
+    opacity: 1;
+    animation: none;
+    width: auto;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
