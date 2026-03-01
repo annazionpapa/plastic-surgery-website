@@ -335,25 +335,16 @@ function Location() {
           <ScrollReveal direction="left">
             <div className="space-y-6">
               <div className="aspect-[4/3] bg-charcoal-light overflow-hidden relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <svg className="w-10 h-10 text-rosegold/30 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                    </svg>
-                    <p className="text-silver-dark/40 text-xs tracking-wider">MAP PLACEHOLDER</p>
-                    <p className="text-silver-dark/30 text-[10px] tracking-wider mt-1">
-                      Kakao / Naver Map
-                    </p>
-                  </div>
-                </div>
-                {/* Decorative grid lines */}
-                <div className="absolute inset-0 opacity-5">
-                  <div className="w-full h-full" style={{
-                    backgroundImage: "linear-gradient(rgba(196,149,106,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(196,149,106,0.3) 1px, transparent 1px)",
-                    backgroundSize: "40px 40px"
-                  }} />
-                </div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.354!2d127.0276!3d37.4979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca15a8e487d25%3A0x7e93b6e0e8a6e0e0!2z6rCV64Ko7Jet!5e0!3m2!1sko!2skr!4v1709000000000!5m2!1sko!2skr"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, position: "absolute", inset: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="뤼에르 성형외과 위치"
+                />
               </div>
 
               {/* Address info */}

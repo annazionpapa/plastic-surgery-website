@@ -197,32 +197,16 @@ function ContactInfo() {
           Location
         </p>
         <div className="relative aspect-video bg-charcoal-light overflow-hidden">
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <svg
-              className="w-10 h-10 text-silver-dark/30 mb-3"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"
-              />
-            </svg>
-            <p className="text-xs text-silver-dark/50">
-              강남역 3번 출구 도보 3분
-            </p>
-            <p className="text-[10px] text-silver-dark/30 mt-1">
-              지도 서비스 연결 예정
-            </p>
-          </div>
-          {/* 장식선 */}
-          <div className="absolute top-4 left-4 w-6 h-6 border-t border-l border-rosegold/20" />
-          <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-rosegold/20" />
-          <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-rosegold/20" />
-          <div className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-rosegold/20" />
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.354!2d127.0276!3d37.4979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca15a8e487d25%3A0x7e93b6e0e8a6e0e0!2z6rCV64Ko7Jet!5e0!3m2!1sko!2skr!4v1709000000000!5m2!1sko!2skr"
+            width="100%"
+            height="100%"
+            style={{ border: 0, position: "absolute", inset: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="뤼에르 성형외과 위치"
+          />
         </div>
       </div>
     </div>
