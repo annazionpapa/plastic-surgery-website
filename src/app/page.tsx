@@ -510,9 +510,24 @@ function DoctorsSection() {
           </ScrollReveal>
         </div>
 
-        {/* Activity Photos — Full-width row */}
+        {/* Quote Bridge + Activity Photos */}
         <ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5 mt-10">
+          <div className="flex items-center gap-5 py-5 mt-8 mb-2 border-t border-b border-white/5">
+            <svg
+              className="w-7 h-7 text-rosegold/25 flex-shrink-0"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11H10v10H0z" />
+            </svg>
+            <p className="text-sm font-light text-ivory/80 leading-relaxed italic">
+              {doc.greeting}
+            </p>
+            <span className="text-[11px] text-rosegold/40 whitespace-nowrap flex-shrink-0">
+              — {doc.name}
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5 mt-4">
             {doc.activityImages.map((activity, i) => (
               <div key={i} className="group relative aspect-[4/3] overflow-hidden">
                 <Image

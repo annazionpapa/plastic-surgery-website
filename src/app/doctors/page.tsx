@@ -78,7 +78,7 @@ function DoctorProfile({
   const isOdd = index % 2 === 0;
 
   return (
-    <div className="space-y-8 lg:space-y-10">
+    <div>
       {/* Top: Profile + Text — 2-column */}
       <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start`}>
         {/* Profile Image */}
@@ -107,19 +107,6 @@ function DoctorProfile({
             <p className="text-sm text-rosegold/80 tracking-wide mb-8">
               {doctor.specialty}
             </p>
-
-            <div className="relative mb-10">
-              <svg
-                className="absolute -top-4 -left-2 w-8 h-8 text-rosegold/15"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11H10v10H0z" />
-              </svg>
-              <p className="text-lg font-light text-ivory/90 leading-relaxed pl-6 border-l border-rosegold/20">
-                {doctor.greeting}
-              </p>
-            </div>
 
             <div className="mb-6">
               <h4 className="text-[10px] tracking-[0.25em] uppercase text-rosegold/70 mb-3">
@@ -168,9 +155,28 @@ function DoctorProfile({
         </ScrollReveal>
       </div>
 
-      {/* Bottom: Activity Gallery — Full-width 3-column */}
+      {/* Quote Bridge */}
       <ScrollReveal>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5">
+        <div className="flex items-center gap-6 py-6 mt-6 mb-2 border-t border-b border-white/5">
+          <svg
+            className="w-8 h-8 text-rosegold/25 flex-shrink-0"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11H10v10H0z" />
+          </svg>
+          <p className="text-[15px] font-light text-ivory/80 leading-relaxed italic">
+            {doctor.greeting}
+          </p>
+          <span className="text-xs text-rosegold/40 whitespace-nowrap flex-shrink-0">
+            — {doctor.name} {doctor.title}
+          </span>
+        </div>
+      </ScrollReveal>
+
+      {/* Activity Gallery — Full-width 3-column */}
+      <ScrollReveal>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5 mt-4">
           {doctor.activityImages.map((activity, i) => (
             <div key={i} className="group relative aspect-[4/3] overflow-hidden">
               <Image
