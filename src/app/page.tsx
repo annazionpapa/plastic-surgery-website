@@ -235,7 +235,7 @@ function TreatmentCard({
     >
       <div
         className={`relative h-full ${
-          size === "large" ? "aspect-[3/4] lg:aspect-auto min-h-[400px] lg:min-h-full" : "aspect-[4/3] min-h-[280px]"
+          size === "large" ? "aspect-[4/3] lg:aspect-auto min-h-[400px] lg:min-h-full" : "aspect-[4/3] min-h-[280px]"
         }`}
       >
         <Image
@@ -336,16 +336,16 @@ function BeforeAfterGallery() {
 
         {cases.map((c) => (
           <div key={c.id} className="gallery-item w-[340px] sm:w-[400px] group">
-            <div className="relative aspect-[4/3] bg-charcoal overflow-hidden mb-4">
+            <div className="relative aspect-[3/2] bg-charcoal overflow-hidden mb-4">
               <div className="absolute inset-0 flex">
                 <div className="w-1/2 relative bg-charcoal-light overflow-hidden">
-                  <Image src={c.before} alt={`${c.title} Before`} fill className="object-cover" />
+                  <Image src={c.before} alt={`${c.title} Before`} fill className="object-cover object-[center_30%]" />
                   <div className="absolute bottom-3 left-3 px-2 py-1 bg-obsidian/70 text-[10px] tracking-wider text-ivory uppercase z-10">
                     Before
                   </div>
                 </div>
                 <div className="w-1/2 relative bg-charcoal overflow-hidden">
-                  <Image src={c.after} alt={`${c.title} After`} fill className="object-cover" />
+                  <Image src={c.after} alt={`${c.title} After`} fill className="object-cover object-[center_30%]" />
                   <div className="absolute bottom-3 right-3 px-2 py-1 bg-rosegold/80 text-[10px] tracking-wider text-obsidian uppercase z-10">
                     After
                   </div>
@@ -414,12 +414,12 @@ function DoctorsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           <ScrollReveal direction="left">
-            <div className="relative aspect-[3/4] max-h-[600px] overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src={doc.image}
                 alt={doc.name}
                 fill
-                className="object-cover object-top transition-opacity duration-500"
+                className="object-cover object-[center_20%] transition-opacity duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8">

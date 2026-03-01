@@ -81,12 +81,12 @@ function DoctorProfile({
     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start`}>
       {/* Image */}
       <ScrollReveal direction={isOdd ? "left" : "right"} className={isOdd ? "" : "lg:order-2"}>
-        <div className="relative aspect-[3/4] max-h-[550px] overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={doctor.image}
             alt={doctor.name}
             fill
-            className="object-cover object-top"
+            className="object-cover object-[center_20%]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian/50 via-transparent to-transparent" />
         </div>

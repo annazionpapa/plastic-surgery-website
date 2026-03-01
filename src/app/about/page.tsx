@@ -96,12 +96,12 @@ function BrandStory() {
 
           <ScrollReveal direction="right" delay={1}>
             <div className="relative">
-              <div className="aspect-[4/5] bg-charcoal overflow-hidden relative">
+              <div className="aspect-[4/3] bg-charcoal overflow-hidden relative">
                 <Image
                   src="/images/facility-lobby.jpg"
                   alt="뤼에르 성형외과 인테리어"
                   fill
-                  className="object-cover"
+                  className="object-cover object-center"
                 />
               </div>
               {/* Floating accent */}

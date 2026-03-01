@@ -266,18 +266,18 @@ function GalleryCard({ galleryCase }: { galleryCase: GalleryCase }) {
   return (
     <div className="group">
       {/* Before / After side by side */}
-      <div className="relative aspect-[4/3] bg-charcoal overflow-hidden mb-4">
+      <div className="relative aspect-[3/2] bg-charcoal overflow-hidden mb-4">
         <div className="absolute inset-0 flex">
           {/* Before side */}
           <div className="w-1/2 relative bg-charcoal-light overflow-hidden">
-            <Image src={galleryCase.before} alt={`${galleryCase.title} Before`} fill className="object-cover" />
+            <Image src={galleryCase.before} alt={`${galleryCase.title} Before`} fill className="object-cover object-[center_30%]" />
             <div className="absolute bottom-3 left-3 px-2 py-1 bg-obsidian/70 backdrop-blur-sm text-[10px] tracking-wider text-ivory uppercase z-10">
               Before
             </div>
           </div>
           {/* After side */}
           <div className="w-1/2 relative bg-charcoal overflow-hidden">
-            <Image src={galleryCase.after} alt={`${galleryCase.title} After`} fill className="object-cover" />
+            <Image src={galleryCase.after} alt={`${galleryCase.title} After`} fill className="object-cover object-[center_30%]" />
             <div className="absolute bottom-3 right-3 px-2 py-1 bg-rosegold/80 backdrop-blur-sm text-[10px] tracking-wider text-obsidian uppercase z-10">
               After
             </div>
