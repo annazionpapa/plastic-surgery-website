@@ -261,9 +261,9 @@ export default function GalleryPage() {
             </div>
 
             {/* Gallery Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {filteredCases.map((galleryCase, i) => (
-                <ScrollReveal key={galleryCase.id} delay={Math.min((i % 3) + 1, 3)}>
+                <ScrollReveal key={galleryCase.id} delay={Math.min((i % 2) + 1, 2)}>
                   <GalleryCard galleryCase={galleryCase} />
                 </ScrollReveal>
               ))}
