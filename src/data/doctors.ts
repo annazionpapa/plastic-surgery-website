@@ -18,7 +18,7 @@ export const doctors: Doctor[] = [
     nameEn: "Dr. Kim Do-Yun",
     title: "대표원장",
     specialty: "코성형 · 윤곽성형 전문",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80",
+    image: "/images/doctor-kim.jpg",
     education: [
       "서울대학교 의과대학 졸업",
       "서울대학교 의학대학원 성형외과 석·박사",
@@ -43,7 +43,7 @@ export const doctors: Doctor[] = [
     nameEn: "Dr. Park Seo-Yeon",
     title: "원장",
     specialty: "눈성형 · 리프팅 전문",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
+    image: "/images/doctor-park.jpg",
     education: [
       "연세대학교 의과대학 졸업",
       "연세대학교 의학대학원 성형외과 전공의 수료",
@@ -67,7 +67,7 @@ export const doctors: Doctor[] = [
     nameEn: "Dr. Lee Jun-Hyeok",
     title: "원장",
     specialty: "가슴성형 · 바디 전문",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80",
+    image: "/images/doctor-lee.jpg",
     education: [
       "고려대학교 의과대학 졸업",
       "고려대학교 의학대학원 성형외과 전공의 수료",

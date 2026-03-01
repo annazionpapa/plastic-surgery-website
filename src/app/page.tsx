@@ -39,7 +39,7 @@ function HeroSection() {
       {/* Left: Image */}
       <div className="hidden lg:block lg:w-[55%] relative overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80"
+          src="/images/facility-lobby.jpg"
           alt="뤼에르 성형외과"
           fill
           className="object-cover"
@@ -51,7 +51,7 @@ function HeroSection() {
       {/* Mobile: Background Image */}
       <div className="lg:hidden absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
+          src="/images/facility-lobby.jpg"
           alt="뤼에르 성형외과"
           fill
           className="object-cover"
@@ -284,12 +284,12 @@ function BeforeAfterGallery() {
   };
 
   const cases = [
-    { id: 1, title: "자연유착 쌍꺼풀", category: "눈 성형", doctor: "박서연 원장", info: "20대 여성 · 3개월 경과" },
-    { id: 2, title: "콧대 + 코끝 복합", category: "코 성형", doctor: "김도윤 원장", info: "30대 여성 · 6개월 경과" },
-    { id: 3, title: "사각턱 축소술", category: "윤곽 성형", doctor: "김도윤 원장", info: "20대 여성 · 3개월 경과" },
-    { id: 4, title: "안면거상술", category: "리프팅", doctor: "박서연 원장", info: "40대 여성 · 2개월 경과" },
-    { id: 5, title: "가슴 확대 (물방울)", category: "가슴 성형", doctor: "이준혁 원장", info: "30대 여성 · 3개월 경과" },
-    { id: 6, title: "눈매교정 + 앞트임", category: "눈 성형", doctor: "박서연 원장", info: "20대 여성 · 2개월 경과" },
+    { id: 1, title: "자연유착 쌍꺼풀", category: "눈 성형", doctor: "박서연 원장", info: "20대 여성 · 3개월 경과", before: "/images/case-eyes-01-before.jpg", after: "/images/case-eyes-01-after.jpg" },
+    { id: 2, title: "콧대 + 코끝 복합", category: "코 성형", doctor: "김도윤 원장", info: "30대 여성 · 6개월 경과", before: "/images/case-nose-01-before.jpg", after: "/images/case-nose-01-after.jpg" },
+    { id: 3, title: "사각턱 축소술", category: "윤곽 성형", doctor: "김도윤 원장", info: "20대 여성 · 3개월 경과", before: "/images/case-contour-01-before.jpg", after: "/images/case-contour-01-after.jpg" },
+    { id: 4, title: "안면거상술", category: "리프팅", doctor: "박서연 원장", info: "40대 여성 · 2개월 경과", before: "/images/case-lifting-01-before.jpg", after: "/images/case-lifting-01-after.jpg" },
+    { id: 5, title: "가슴 확대 (물방울)", category: "가슴 성형", doctor: "이준혁 원장", info: "30대 여성 · 3개월 경과", before: "/images/case-breast-01-before.jpg", after: "/images/case-breast-01-after.jpg" },
+    { id: 6, title: "눈매교정 + 앞트임", category: "눈 성형", doctor: "박서연 원장", info: "20대 여성 · 2개월 경과", before: "/images/case-eyes-02-before.jpg", after: "/images/case-eyes-02-after.jpg" },
   ];
 
   return (
@@ -338,14 +338,14 @@ function BeforeAfterGallery() {
           <div key={c.id} className="gallery-item w-[340px] sm:w-[400px] group">
             <div className="relative aspect-[4/3] bg-charcoal overflow-hidden mb-4">
               <div className="absolute inset-0 flex">
-                <div className="w-1/2 relative bg-charcoal-light">
-                  <div className="absolute inset-0 flex items-center justify-center text-silver-dark/30 text-xs tracking-wider">BEFORE</div>
+                <div className="w-1/2 relative bg-charcoal-light overflow-hidden">
+                  <Image src={c.before} alt={`${c.title} Before`} fill className="object-cover" />
                   <div className="absolute bottom-3 left-3 px-2 py-1 bg-obsidian/70 text-[10px] tracking-wider text-ivory uppercase z-10">
                     Before
                   </div>
                 </div>
-                <div className="w-1/2 relative bg-charcoal">
-                  <div className="absolute inset-0 flex items-center justify-center text-silver-dark/30 text-xs tracking-wider">AFTER</div>
+                <div className="w-1/2 relative bg-charcoal overflow-hidden">
+                  <Image src={c.after} alt={`${c.title} After`} fill className="object-cover" />
                   <div className="absolute bottom-3 right-3 px-2 py-1 bg-rosegold/80 text-[10px] tracking-wider text-obsidian uppercase z-10">
                     After
                   </div>

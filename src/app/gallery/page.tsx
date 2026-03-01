@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -26,6 +27,8 @@ interface GalleryCase {
   info: string;
   doctor: string;
   period: string;
+  before: string;
+  after: string;
 }
 
 const galleryCases: GalleryCase[] = [
@@ -37,6 +40,8 @@ const galleryCases: GalleryCase[] = [
     info: "20대 여성",
     doctor: "박서연 원장",
     period: "3개월 경과",
+    before: "/images/case-eyes-01-before.jpg",
+    after: "/images/case-eyes-01-after.jpg",
   },
   {
     id: 2,
@@ -45,6 +50,8 @@ const galleryCases: GalleryCase[] = [
     info: "20대 여성",
     doctor: "박서연 원장",
     period: "2개월 경과",
+    before: "/images/case-eyes-02-before.jpg",
+    after: "/images/case-eyes-02-after.jpg",
   },
   {
     id: 3,
@@ -53,6 +60,8 @@ const galleryCases: GalleryCase[] = [
     info: "30대 여성",
     doctor: "박서연 원장",
     period: "1개월 경과",
+    before: "/images/case-eyes-03-before.jpg",
+    after: "/images/case-eyes-03-after.jpg",
   },
   // 코 3
   {
@@ -62,6 +71,8 @@ const galleryCases: GalleryCase[] = [
     info: "30대 여성",
     doctor: "김도윤 원장",
     period: "6개월 경과",
+    before: "/images/case-nose-01-before.jpg",
+    after: "/images/case-nose-01-after.jpg",
   },
   {
     id: 5,
@@ -70,6 +81,8 @@ const galleryCases: GalleryCase[] = [
     info: "20대 남성",
     doctor: "김도윤 원장",
     period: "3개월 경과",
+    before: "/images/case-nose-02-before.jpg",
+    after: "/images/case-nose-02-after.jpg",
   },
   {
     id: 6,
@@ -78,6 +91,8 @@ const galleryCases: GalleryCase[] = [
     info: "30대 여성",
     doctor: "김도윤 원장",
     period: "4개월 경과",
+    before: "/images/case-nose-03-before.jpg",
+    after: "/images/case-nose-03-after.jpg",
   },
   // 윤곽 2
   {
@@ -87,6 +102,8 @@ const galleryCases: GalleryCase[] = [
     info: "20대 여성",
     doctor: "김도윤 원장",
     period: "3개월 경과",
+    before: "/images/case-contour-01-before.jpg",
+    after: "/images/case-contour-01-after.jpg",
   },
   {
     id: 8,
@@ -95,6 +112,8 @@ const galleryCases: GalleryCase[] = [
     info: "30대 여성",
     doctor: "김도윤 원장",
     period: "2개월 경과",
+    before: "/images/case-contour-02-before.jpg",
+    after: "/images/case-contour-02-after.jpg",
   },
   // 리프팅 2
   {
@@ -104,6 +123,8 @@ const galleryCases: GalleryCase[] = [
     info: "40대 여성",
     doctor: "박서연 원장",
     period: "2개월 경과",
+    before: "/images/case-lifting-01-before.jpg",
+    after: "/images/case-lifting-01-after.jpg",
   },
   {
     id: 10,
@@ -112,6 +133,8 @@ const galleryCases: GalleryCase[] = [
     info: "40대 여성",
     doctor: "박서연 원장",
     period: "1개월 경과",
+    before: "/images/case-lifting-02-before.jpg",
+    after: "/images/case-lifting-02-after.jpg",
   },
   // 가슴 1
   {
@@ -121,6 +144,8 @@ const galleryCases: GalleryCase[] = [
     info: "30대 여성",
     doctor: "이준혁 원장",
     period: "3개월 경과",
+    before: "/images/case-breast-01-before.jpg",
+    after: "/images/case-breast-01-after.jpg",
   },
   // 바디 1
   {
@@ -130,6 +155,8 @@ const galleryCases: GalleryCase[] = [
     info: "30대 여성",
     doctor: "이준혁 원장",
     period: "2개월 경과",
+    before: "/images/case-body-01-before.jpg",
+    after: "/images/case-body-01-after.jpg",
   },
 ];
 
@@ -242,23 +269,15 @@ function GalleryCard({ galleryCase }: { galleryCase: GalleryCase }) {
       <div className="relative aspect-[4/3] bg-charcoal overflow-hidden mb-4">
         <div className="absolute inset-0 flex">
           {/* Before side */}
-          <div className="w-1/2 relative bg-charcoal-light">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-silver-dark/20 text-xs tracking-[0.2em] uppercase">
-                Before
-              </span>
-            </div>
+          <div className="w-1/2 relative bg-charcoal-light overflow-hidden">
+            <Image src={galleryCase.before} alt={`${galleryCase.title} Before`} fill className="object-cover" />
             <div className="absolute bottom-3 left-3 px-2 py-1 bg-obsidian/70 backdrop-blur-sm text-[10px] tracking-wider text-ivory uppercase z-10">
               Before
             </div>
           </div>
           {/* After side */}
-          <div className="w-1/2 relative bg-charcoal">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-silver-dark/20 text-xs tracking-[0.2em] uppercase">
-                After
-              </span>
-            </div>
+          <div className="w-1/2 relative bg-charcoal overflow-hidden">
+            <Image src={galleryCase.after} alt={`${galleryCase.title} After`} fill className="object-cover" />
             <div className="absolute bottom-3 right-3 px-2 py-1 bg-rosegold/80 backdrop-blur-sm text-[10px] tracking-wider text-obsidian uppercase z-10">
               After
             </div>

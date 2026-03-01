@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -93,16 +94,15 @@ function BrandStory() {
             </div>
           </ScrollReveal>
 
-          {/* Image placeholder */}
           <ScrollReveal direction="right" delay={1}>
             <div className="relative">
-              <div className="aspect-[4/5] bg-charcoal overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-charcoal-light to-charcoal flex items-center justify-center">
-                  <div className="text-center">
-                    <span className="font-display italic text-rosegold/30 text-4xl">LUEUR</span>
-                    <p className="text-silver-dark/30 text-xs tracking-wider mt-2">CLINIC INTERIOR</p>
-                  </div>
-                </div>
+              <div className="aspect-[4/5] bg-charcoal overflow-hidden relative">
+                <Image
+                  src="/images/facility-lobby.jpg"
+                  alt="뤼에르 성형외과 인테리어"
+                  fill
+                  className="object-cover"
+                />
               </div>
               {/* Floating accent */}
               <div className="absolute -bottom-6 -left-6 w-32 h-32 border border-rosegold/20" />
@@ -220,10 +220,10 @@ function CoreValues() {
    ══════════════════════════════════════════ */
 function Facilities() {
   const facilities = [
-    { title: "프리미엄 상담실", desc: "프라이빗한 1:1 상담 공간" },
-    { title: "무균 수술실", desc: "대학병원급 수술 환경" },
-    { title: "회복 케어룸", desc: "쾌적한 수술 후 회복 공간" },
-    { title: "첨단 장비실", desc: "최신 의료 장비 구비" },
+    { title: "프리미엄 상담실", desc: "프라이빗한 1:1 상담 공간", image: "/images/facility-consultation.jpg" },
+    { title: "무균 수술실", desc: "대학병원급 수술 환경", image: "/images/facility-or.jpg" },
+    { title: "회복 케어룸", desc: "쾌적한 수술 후 회복 공간", image: "/images/facility-recovery.jpg" },
+    { title: "첨단 장비실", desc: "최신 의료 장비 구비", image: "/images/equipment-3dct.jpg" },
   ];
 
   return (
@@ -250,14 +250,13 @@ function Facilities() {
           {facilities.map((facility, i) => (
             <ScrollReveal key={facility.title} delay={Math.min(i + 1, 4)}>
               <div className="group">
-                {/* Image placeholder */}
-                <div className="aspect-[4/3] bg-charcoal overflow-hidden mb-4">
-                  <div className="w-full h-full bg-gradient-to-br from-charcoal-light to-charcoal flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
-                    <div className="text-center">
-                      <span className="font-display italic text-rosegold/20 text-lg">{String(i + 1).padStart(2, "0")}</span>
-                      <p className="text-silver-dark/20 text-[10px] tracking-wider mt-1">FACILITY</p>
-                    </div>
-                  </div>
+                <div className="aspect-[4/3] bg-charcoal overflow-hidden mb-4 relative">
+                  <Image
+                    src={facility.image}
+                    alt={facility.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
                 </div>
                 <h3 className="text-base font-light text-ivory mb-1">
                   {facility.title}
