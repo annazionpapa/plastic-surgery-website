@@ -11,7 +11,6 @@ const navItems = [
   { href: "/gallery", label: "전후 사진" },
   { href: "/doctors", label: "의료진" },
   { href: "/reviews", label: "후기" },
-  { href: "/contact", label: "상담 예약" },
 ];
 
 export default function Header() {
@@ -131,7 +130,14 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <div className="mt-8 pt-8 border-t border-white/10">
+          <Link
+            href="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="mt-6 px-10 py-3.5 border border-rosegold/40 text-rosegold text-lg tracking-wider hover:bg-rosegold hover:text-obsidian transition-all"
+          >
+            상담 예약
+          </Link>
+          <div className="mt-6 pt-6 border-t border-white/10">
             <a
               href="tel:02-1234-5678"
               className="text-sm text-silver-dark tracking-wider"
