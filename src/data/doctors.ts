@@ -1,3 +1,9 @@
+export interface ActivityImage {
+  src: string;
+  alt: string;
+  label: string;
+}
+
 export interface Doctor {
   id: string;
   name: string;
@@ -5,6 +11,7 @@ export interface Doctor {
   title: string;
   specialty: string;
   image: string;
+  activityImages: ActivityImage[];
   education: string[];
   career: string[];
   certifications: string[];
@@ -19,6 +26,11 @@ export const doctors: Doctor[] = [
     title: "대표원장",
     specialty: "코성형 · 윤곽성형 전문",
     image: "/images/doctor-kim.jpg",
+    activityImages: [
+      { src: "/images/doctor-kim-consulting.jpg", alt: "김도윤 원장 3D CT 상담", label: "1:1 정밀 상담" },
+      { src: "/images/doctor-kim-surgery.jpg", alt: "김도윤 원장 수술", label: "코·윤곽 수술" },
+      { src: "/images/doctor-kim-lecture.jpg", alt: "김도윤 원장 학회 발표", label: "학회 발표" },
+    ],
     education: [
       "서울대학교 의과대학 졸업",
       "서울대학교 의학대학원 성형외과 석·박사",
@@ -44,6 +56,11 @@ export const doctors: Doctor[] = [
     title: "원장",
     specialty: "눈성형 · 리프팅 전문",
     image: "/images/doctor-park.jpg",
+    activityImages: [
+      { src: "/images/doctor-park-consulting.jpg", alt: "박서연 원장 눈 상담", label: "눈매 디자인 상담" },
+      { src: "/images/doctor-park-surgery.jpg", alt: "박서연 원장 수술", label: "눈·리프팅 수술" },
+      { src: "/images/doctor-park-discussion.jpg", alt: "박서연 원장 증례 토론", label: "증례 토론" },
+    ],
     education: [
       "연세대학교 의과대학 졸업",
       "연세대학교 의학대학원 성형외과 전공의 수료",
@@ -68,6 +85,11 @@ export const doctors: Doctor[] = [
     title: "원장",
     specialty: "가슴성형 · 바디 전문",
     image: "/images/doctor-lee.jpg",
+    activityImages: [
+      { src: "/images/doctor-lee-consulting.jpg", alt: "이준혁 원장 가슴성형 상담", label: "보형물 맞춤 상담" },
+      { src: "/images/doctor-lee-surgery.jpg", alt: "이준혁 원장 수술", label: "가슴·바디 수술" },
+      { src: "/images/doctor-lee-research.jpg", alt: "이준혁 원장 연구", label: "최신 연구" },
+    ],
     education: [
       "고려대학교 의과대학 졸업",
       "고려대학교 의학대학원 성형외과 전공의 수료",

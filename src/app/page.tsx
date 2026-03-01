@@ -414,22 +414,44 @@ function DoctorsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           <ScrollReveal direction="left">
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <Image
-                src={doc.image}
-                alt={doc.name}
-                fill
-                className="object-cover object-[center_20%] transition-opacity duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <p className="font-display italic text-rosegold text-sm mb-1">
-                  {doc.nameEn}
-                </p>
-                <h3 className="text-2xl font-light text-ivory">
-                  {doc.name}{" "}
-                  <span className="text-sm text-silver">{doc.title}</span>
-                </h3>
+            <div className="space-y-3">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={doc.image}
+                  alt={doc.name}
+                  fill
+                  className="object-cover object-[center_20%] transition-opacity duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <p className="font-display italic text-rosegold text-sm mb-1">
+                    {doc.nameEn}
+                  </p>
+                  <h3 className="text-2xl font-light text-ivory">
+                    {doc.name}{" "}
+                    <span className="text-sm text-silver">{doc.title}</span>
+                  </h3>
+                </div>
+              </div>
+
+              {/* Activity Thumbnails */}
+              <div className="grid grid-cols-3 gap-3">
+                {doc.activityImages.map((activity, i) => (
+                  <div key={i} className="group relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={activity.src}
+                      alt={activity.alt}
+                      fill
+                      className="object-cover object-[center_30%] group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-obsidian/30 group-hover:bg-obsidian/10 transition-colors duration-500" />
+                    <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-obsidian/80 to-transparent">
+                      <p className="text-[10px] text-ivory/90 tracking-wider text-center">
+                        {activity.label}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </ScrollReveal>
