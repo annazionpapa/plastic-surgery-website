@@ -395,6 +395,8 @@ function BeforeAfterGallery() {
     { id: 4, title: "안면거상술", category: "리프팅", doctor: "박서연 원장", info: "40대 여성 · 2개월 경과", before: "/images/case-lifting-01-before.jpg", after: "/images/case-lifting-01-after.jpg" },
     { id: 5, title: "가슴 확대 (물방울)", category: "가슴 성형", doctor: "이준혁 원장", info: "30대 여성 · 3개월 경과", before: "/images/case-breast-01-before.jpg", after: "/images/case-breast-01-after.jpg" },
     { id: 6, title: "눈매교정 + 앞트임", category: "눈 성형", doctor: "박서연 원장", info: "20대 여성 · 2개월 경과", before: "/images/case-eyes-02-before.jpg", after: "/images/case-eyes-02-after.jpg" },
+    { id: 7, title: "절개 쌍꺼풀 + 눈매교정", category: "눈 성형", doctor: "박서연 원장", info: "30대 남성 · 3개월 경과", before: "/images/case-eyes-04-before.jpg", after: "/images/case-eyes-04-after.jpg" },
+    { id: 8, title: "들창코 교정", category: "코 성형", doctor: "김도윤 원장", info: "20대 여성 · 4개월 경과", before: "/images/case-nose-04-before.jpg", after: "/images/case-nose-04-after.jpg" },
   ];
 
   return (

@@ -159,6 +159,51 @@ const galleryCases: GalleryCase[] = [
     before: "/images/case-body-01-before.jpg",
     after: "/images/case-body-01-after.jpg",
   },
+  // ── 신규 추가 ──
+  // 눈 +1 (남성)
+  {
+    id: 13,
+    title: "절개 쌍꺼풀 + 눈매교정",
+    category: "눈 성형",
+    info: "30대 남성",
+    doctor: "박서연 원장",
+    period: "3개월 경과",
+    before: "/images/case-eyes-04-before.jpg",
+    after: "/images/case-eyes-04-after.jpg",
+  },
+  // 코 +1
+  {
+    id: 14,
+    title: "들창코 교정",
+    category: "코 성형",
+    info: "20대 여성",
+    doctor: "김도윤 원장",
+    period: "4개월 경과",
+    before: "/images/case-nose-04-before.jpg",
+    after: "/images/case-nose-04-after.jpg",
+  },
+  // 윤곽 +1 (남성)
+  {
+    id: 15,
+    title: "턱끝 성형 (무턱)",
+    category: "윤곽 성형",
+    info: "20대 남성",
+    doctor: "김도윤 원장",
+    period: "3개월 경과",
+    before: "/images/case-contour-03-before.jpg",
+    after: "/images/case-contour-03-after.jpg",
+  },
+  // 리프팅 +1
+  {
+    id: 16,
+    title: "이마거상 + 눈썹리프팅",
+    category: "리프팅",
+    info: "50대 여성",
+    doctor: "박서연 원장",
+    period: "2개월 경과",
+    before: "/images/case-lifting-03-before.jpg",
+    after: "/images/case-lifting-03-after.jpg",
+  },
 ];
 
 export default function GalleryPage() {
