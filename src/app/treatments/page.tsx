@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
@@ -7,6 +8,7 @@ import Footer from "@/components/Footer";
 import MobileBottomCTA from "@/components/MobileBottomCTA";
 import ScrollReveal from "@/components/ScrollReveal";
 import { treatments } from "@/data/treatments";
+import type { FAQ } from "@/data/treatments";
 
 export default function TreatmentsPage() {
   return (
@@ -69,7 +71,7 @@ function TreatmentsList() {
     <section className="py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         {treatments.map((treatment, index) => {
-          const isOdd = index % 2 === 0; // first item = image left
+          const isOdd = index % 2 === 0;
 
           return (
             <div
@@ -77,11 +79,11 @@ function TreatmentsList() {
               id={treatment.id}
               className="scroll-mt-24"
             >
-              {/* Divider between sections */}
               {index > 0 && (
                 <div className="divider my-16 lg:my-24" />
               )}
 
+              {/* Main: Image + Content */}
               <div
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center ${
                   !isOdd ? "lg:[direction:rtl]" : ""
@@ -98,7 +100,6 @@ function TreatmentsList() {
                         className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-obsidian/40 via-transparent to-transparent" />
-                      {/* Category badge */}
                       <div className="absolute top-5 left-5">
                         <span className="px-3 py-1.5 text-[10px] tracking-[0.2em] uppercase bg-obsidian/60 backdrop-blur-sm text-rosegold border border-rosegold/20">
                           {treatment.titleEn}
@@ -111,7 +112,6 @@ function TreatmentsList() {
                 {/* Content */}
                 <ScrollReveal direction={isOdd ? "right" : "left"} delay={1}>
                   <div className="lg:[direction:ltr]">
-                    {/* Section number */}
                     <div className="flex items-center gap-4 mb-6">
                       <span className="text-5xl lg:text-6xl font-light text-rosegold/10 font-display italic">
                         {String(index + 1).padStart(2, "0")}
@@ -139,29 +139,16 @@ function TreatmentsList() {
                       </h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {treatment.details.map((detail) => (
-                          <div
-                            key={detail}
-                            className="flex items-center gap-3 py-2"
-                          >
+                          <div key={detail} className="flex items-center gap-3 py-2">
                             <span className="w-1 h-1 bg-rosegold/40 flex-shrink-0" />
-                            <span className="text-sm text-silver-dark">
-                              {detail}
-                            </span>
+                            <span className="text-sm text-silver-dark">{detail}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    {/* Info grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 glass">
-                      <div>
-                        <p className="text-[10px] tracking-[0.15em] uppercase text-rosegold/50 mb-1">
-                          Price
-                        </p>
-                        <p className="text-sm text-ivory font-light">
-                          {treatment.priceHint}
-                        </p>
-                      </div>
+                    {/* Info grid (가격 제외) */}
+                    <div className="grid grid-cols-3 gap-4 p-5 glass">
                       <div>
                         <p className="text-[10px] tracking-[0.15em] uppercase text-rosegold/50 mb-1">
                           Duration
@@ -197,7 +184,7 @@ function TreatmentsList() {
                         상담 예약
                       </Link>
                       <Link
-                        href={`/gallery`}
+                        href="/gallery"
                         className="inline-flex items-center gap-2 text-xs text-rosegold/70 hover:text-rosegold transition-colors group"
                       >
                         시술 결과 보기
@@ -209,6 +196,44 @@ function TreatmentsList() {
                   </div>
                 </ScrollReveal>
               </div>
+
+              {/* Process Steps */}
+              <ScrollReveal>
+                <div className="mt-14 lg:mt-20">
+                  <h3 className="text-[10px] tracking-[0.3em] uppercase text-rosegold/60 mb-8 text-center">
+                    Process
+                  </h3>
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5">
+                    {treatment.process.map((p) => (
+                      <div key={p.step} className="bg-obsidian p-6 lg:p-8 group hover:bg-obsidian-lighter/50 transition-colors duration-500">
+                        <span className="text-2xl font-display italic text-rosegold/20 group-hover:text-rosegold/40 transition-colors">
+                          {p.step}
+                        </span>
+                        <h4 className="text-sm text-ivory mt-3 mb-2 font-light">
+                          {p.title}
+                        </h4>
+                        <p className="text-xs text-silver-dark leading-relaxed">
+                          {p.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* FAQ Accordion */}
+              <ScrollReveal>
+                <div className="mt-12 lg:mt-16 max-w-3xl mx-auto">
+                  <h3 className="text-[10px] tracking-[0.3em] uppercase text-rosegold/60 mb-6 text-center">
+                    FAQ
+                  </h3>
+                  <div className="space-y-0">
+                    {treatment.faq.map((item, i) => (
+                      <FAQItem key={i} item={item} />
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
           );
         })}
@@ -218,11 +243,51 @@ function TreatmentsList() {
 }
 
 /* ══════════════════════════════════════════
+   FAQ ACCORDION ITEM
+   ══════════════════════════════════════════ */
+function FAQItem({ item }: { item: FAQ }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="border-b border-white/5">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-5 text-left group"
+      >
+        <span className="text-sm text-ivory/90 font-light pr-4 group-hover:text-rosegold transition-colors">
+          {item.q}
+        </span>
+        <svg
+          className={`w-4 h-4 text-rosegold/40 flex-shrink-0 transition-transform duration-300 ${
+            open ? "rotate-180" : ""
+          }`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={1.5}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+      </button>
+      <div
+        className={`overflow-hidden transition-all duration-300 ${
+          open ? "max-h-40 pb-5" : "max-h-0"
+        }`}
+      >
+        <p className="text-sm text-silver-dark leading-relaxed pl-0">
+          {item.a}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
    CTA
    ══════════════════════════════════════════ */
 function CTASection() {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden">
+    <section className="relative py-28 lg:py-40 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-obsidian-lighter to-obsidian" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-rosegold/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-72 h-72 bg-rosegold/3 rounded-full blur-3xl" />
@@ -239,7 +304,7 @@ function CTASection() {
               전문의와 상담하세요
             </span>
           </h2>
-          <p className="text-silver leading-relaxed mb-10 max-w-lg mx-auto">
+          <p className="text-silver leading-relaxed mb-12 max-w-lg mx-auto">
             온라인으로 간편하게 상담을 예약하시면,
             <br className="hidden sm:block" />
             전문의가 1:1 맞춤 시술을 제안해 드립니다.
