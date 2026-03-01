@@ -75,14 +75,14 @@ function DoctorProfile({
   doctor: (typeof doctors)[0];
   index: number;
 }) {
-  const isOdd = index % 2 === 0; // 0-indexed: 첫 번째(0)는 이미지 좌, 두 번째(1)는 이미지 우
+  const isOdd = index % 2 === 0;
 
   return (
-    <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start`}>
-      {/* Image + Activity Gallery */}
-      <ScrollReveal direction={isOdd ? "left" : "right"} className={isOdd ? "" : "lg:order-2"}>
-        <div className="space-y-3">
-          {/* Main Profile */}
+    <div className="space-y-8 lg:space-y-10">
+      {/* Top: Profile + Text — 2-column */}
+      <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start`}>
+        {/* Profile Image */}
+        <ScrollReveal direction={isOdd ? "left" : "right"} className={isOdd ? "" : "lg:order-2"}>
           <div className="relative aspect-[4/3] overflow-hidden">
             <Image
               src={doctor.image}
@@ -92,104 +92,101 @@ function DoctorProfile({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-obsidian/50 via-transparent to-transparent" />
           </div>
+        </ScrollReveal>
 
-          {/* Activity Photos */}
-          <div className="grid grid-cols-3 gap-3">
-            {doctor.activityImages.map((activity, i) => (
-              <div key={i} className="group relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={activity.src}
-                  alt={activity.alt}
-                  fill
-                  className="object-cover object-[center_30%] group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-obsidian/30 group-hover:bg-obsidian/10 transition-colors duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-obsidian/80 to-transparent">
-                  <p className="text-[10px] text-ivory/90 tracking-wider text-center">
-                    {activity.label}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </ScrollReveal>
-
-      {/* Text Content */}
-      <ScrollReveal direction={isOdd ? "right" : "left"} delay={1} className={isOdd ? "" : "lg:order-1"}>
-        <div className="flex flex-col justify-center lg:py-8">
-          {/* Name & Title */}
-          <p className="font-display italic text-rosegold text-sm mb-2">
-            {doctor.nameEn}
-          </p>
-          <h2 className="text-3xl lg:text-4xl font-light text-ivory mb-1">
-            {doctor.name}
-          </h2>
-          <p className="text-sm text-silver mb-2">{doctor.title}</p>
-          <p className="text-sm text-rosegold/80 tracking-wide mb-8">
-            {doctor.specialty}
-          </p>
-
-          {/* Greeting - 큰 따옴표 스타일 */}
-          <div className="relative mb-10">
-            <svg
-              className="absolute -top-4 -left-2 w-8 h-8 text-rosegold/15"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11H10v10H0z" />
-            </svg>
-            <p className="text-lg font-light text-ivory/90 leading-relaxed pl-6 border-l border-rosegold/20">
-              {doctor.greeting}
+        {/* Text Content */}
+        <ScrollReveal direction={isOdd ? "right" : "left"} delay={1} className={isOdd ? "" : "lg:order-1"}>
+          <div className="flex flex-col justify-center lg:py-8">
+            <p className="font-display italic text-rosegold text-sm mb-2">
+              {doctor.nameEn}
             </p>
-          </div>
+            <h2 className="text-3xl lg:text-4xl font-light text-ivory mb-1">
+              {doctor.name}
+            </h2>
+            <p className="text-sm text-silver mb-2">{doctor.title}</p>
+            <p className="text-sm text-rosegold/80 tracking-wide mb-8">
+              {doctor.specialty}
+            </p>
 
-          {/* Education */}
-          <div className="mb-6">
-            <h4 className="text-[10px] tracking-[0.25em] uppercase text-rosegold/70 mb-3">
-              Education
-            </h4>
-            <ul className="space-y-1.5">
-              {doctor.education.map((e, i) => (
-                <li key={i} className="text-sm text-silver-dark flex items-start gap-2">
-                  <span className="w-1 h-1 bg-rosegold/40 rounded-full mt-2 flex-shrink-0" />
-                  {e}
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div className="relative mb-10">
+              <svg
+                className="absolute -top-4 -left-2 w-8 h-8 text-rosegold/15"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11H10v10H0z" />
+              </svg>
+              <p className="text-lg font-light text-ivory/90 leading-relaxed pl-6 border-l border-rosegold/20">
+                {doctor.greeting}
+              </p>
+            </div>
 
-          {/* Career */}
-          <div className="mb-6">
-            <h4 className="text-[10px] tracking-[0.25em] uppercase text-rosegold/70 mb-3">
-              Career
-            </h4>
-            <ul className="space-y-1.5">
-              {doctor.career.map((c, i) => (
-                <li key={i} className="text-sm text-silver-dark flex items-start gap-2">
-                  <span className="w-1 h-1 bg-rosegold/40 rounded-full mt-2 flex-shrink-0" />
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div className="mb-6">
+              <h4 className="text-[10px] tracking-[0.25em] uppercase text-rosegold/70 mb-3">
+                Education
+              </h4>
+              <ul className="space-y-1.5">
+                {doctor.education.map((e, i) => (
+                  <li key={i} className="text-sm text-silver-dark flex items-start gap-2">
+                    <span className="w-1 h-1 bg-rosegold/40 rounded-full mt-2 flex-shrink-0" />
+                    {e}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Certifications */}
-          <div>
-            <h4 className="text-[10px] tracking-[0.25em] uppercase text-rosegold/70 mb-3">
-              Certifications
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {doctor.certifications.map((c, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1.5 text-[11px] border border-white/8 text-silver-dark"
-                >
-                  {c}
-                </span>
-              ))}
+            <div className="mb-6">
+              <h4 className="text-[10px] tracking-[0.25em] uppercase text-rosegold/70 mb-3">
+                Career
+              </h4>
+              <ul className="space-y-1.5">
+                {doctor.career.map((c, i) => (
+                  <li key={i} className="text-sm text-silver-dark flex items-start gap-2">
+                    <span className="w-1 h-1 bg-rosegold/40 rounded-full mt-2 flex-shrink-0" />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-[10px] tracking-[0.25em] uppercase text-rosegold/70 mb-3">
+                Certifications
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {doctor.certifications.map((c, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1.5 text-[11px] border border-white/8 text-silver-dark"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
+        </ScrollReveal>
+      </div>
+
+      {/* Bottom: Activity Gallery — Full-width 3-column */}
+      <ScrollReveal>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5">
+          {doctor.activityImages.map((activity, i) => (
+            <div key={i} className="group relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={activity.src}
+                alt={activity.alt}
+                fill
+                className="object-cover object-[center_30%] group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-obsidian/20 group-hover:bg-obsidian/5 transition-colors duration-500" />
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-obsidian/80 via-obsidian/30 to-transparent">
+                <p className="text-xs text-ivory/90 tracking-wider">
+                  {activity.label}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </ScrollReveal>
     </div>
